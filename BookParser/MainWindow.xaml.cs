@@ -23,7 +23,6 @@ namespace BookParser
         public MainWindow()
         {
             InitializeComponent();
-            BookViewModel bookViewModel = new BookViewModel();
         }
     }
 }
