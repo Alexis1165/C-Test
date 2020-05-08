@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookParser
+namespace BookParser.View
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaktionslogik für BookGrid.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BookGrid : UserControl
     {
-        public MainWindow()
+        public BookGrid()
         {
             InitializeComponent();
-            BookViewModel bookViewModel = new BookViewModel();
         }
     }
 }
