@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 public class Book : INotifyPropertyChanged
 {
@@ -6,6 +8,9 @@ public class Book : INotifyPropertyChanged
     private string author;
     private string price;
     private string year;
+    private bool inStock;
+    private BindingType binding; 
+    private Button description;
     public string Title
     {
         get
@@ -57,16 +62,60 @@ public class Book : INotifyPropertyChanged
         }
     }
 
+    public bool InStock
+    {
+        get
+        {
+            return inStock;
+        }
+        set
+        {
+            inStock = value;
+            OnPropertyChanged("InStock");
+        }
+    }
+    public BindingType Binding
+    {
+        get
+        {
+            return binding;
+        }
+        set
+        {
+            binding = value;
+            OnPropertyChanged("Binding");
+        }
+    }
+
+    public Button Description
+    {
+        get
+        {
+            return description;
+        }
+        set
+        {
+            description = value;
+            OnPropertyChanged("Description");
+        }
+    }
+
     #region INotifyPropertyChanged Members  
 
     public event PropertyChangedEventHandler PropertyChanged;
     private void OnPropertyChanged(string propertyName)
     {
-        if (PropertyChanged != null)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
     #endregion
 
 }
+
+public enum BindingType
+{
+    Paperback,
+    Hardcover,
+    Unknown,
+    Coalwood
+}
+

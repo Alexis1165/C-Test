@@ -1,16 +1,37 @@
-﻿using System.Windows.Input;
-using System.Collections.Generic;
-using System;
+﻿using BookParser.Helpers;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 class BookViewModel
 {
-    public BookViewModel()
+    public ObservableCollection<Book> Books { get; set; }
+    public BookViewModel(string[] lines)
     {
-        Books = new List<Book>
+        Books = new ObservableCollection<Book>();
+        for (int i = 1; i < lines.Length; ++i)
+        {
+            string[] words = lines[i].Split(';');
+
+            Books.Add(new Book
             {
-                new Book{Title = "Sample", Author="Raj",Price="2",Year="2020"}
-            };
+                Title = words[0],
+                Author = words[1],
+                Year = words[2],
+                Price = words[3],
+                InStock = words[4] == Constants.YES ? true : false,
+                Binding = setBinding(words[5]),
+                Description = new Button()
+            });
+        }
     }
 
-    public IList<Book> Books { get; set; }
+    public BindingType setBinding(string word) 
+    {
+        if (word == Constants.PAPERBACK) return BindingType.Paperback;
+        else if (word == Constants.HARDCOVER) return BindingType.Hardcover;
+        else if (word == Constants.COALWOOD) return BindingType.Coalwood;
+        
+        return BindingType.Unknown;        
+    }
 }
