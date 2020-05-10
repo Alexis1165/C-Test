@@ -7,7 +7,7 @@
              d:DesignHeight="500" d:DesignWidth="800">
 
     <StackPanel Orientation="Vertical" >
-        <DataGrid Name="dataGrid" Sorting="dataGrid_Sorting">
+        <DataGrid Name="dataGrid" Sorting="dataGrid_Sorting" SelectionChanged="dataGrid_SelectionChanged"> 
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Title" Binding="{Binding Path='Title'}" 
@@ -31,7 +31,7 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="Price" Binding="{Binding Path='Price'}" 
-                                    IsReadOnly="True" Width="*">
+                                    IsReadOnly="True" Width="*" FontWeight="Heavy">
                     <DataGridTextColumn.ElementStyle>
                         <Style>
                             <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
@@ -90,7 +90,8 @@
                 <DataGridTemplateColumn Header="Description" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="btnView" Content="Description" Click="btnView_Click" 
+                            <Button Name="btnDescription" Content="Description" 
+                                    Click="btnDescription_Click" 
                                     Height="20" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -100,10 +101,10 @@
         </DataGrid>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <Button Name="btnFillGrid" Content="Upload Book" Padding="5" Margin="5" 
-                    Click="btnFillGrid_Click"/>
+            <Button Name="btnUploadBook" Content="Upload Book" Padding="5" Margin="5" 
+                    Click="btnUploadBook_Click"/>
             <TextBlock Name="btnDeleteGrid" Text="Delete Out of Stock Items" Cursor="Hand" 
-                       Foreground="Blue" TextDecorations="Underline"/>
+                       Foreground="#4D85BF" TextDecorations="Underline" FontWeight="Bold"/>
         </StackPanel>
         
     </StackPanel>

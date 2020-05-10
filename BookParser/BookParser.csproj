@@ -79,6 +79,7 @@
       <DependentUpon>DescriptionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\CustomElements.cs" />
     <Compile Include="Model\Binding.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="View\BookView.xaml.cs">
