@@ -7,6 +7,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel Orientation="Vertical" Margin="5">
+        <Label Content="Welcome! Please upload a csv file to get the required book data" 
+               HorizontalAlignment="Center" FontWeight="Bold"/>
         <DataGrid Name="dataGrid" Sorting="dataGrid_Sorting" SelectionChanged="dataGrid_SelectionChanged"> 
             <DataGrid.Columns>
 
