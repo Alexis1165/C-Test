@@ -157,15 +157,35 @@ namespace BookParser.View
 
         private void btnDeleteGrid_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ObservableCollection<Book> books = new ObservableCollection<Book>();
+            try 
+            {
+                if (bookViewModel != null)
+                {
+                    ObservableCollection<Book> books = new ObservableCollection<Book>();
 
-            foreach(Book book in bookViewModel.Books) 
-                if (book.InStock) books.Add(book);
+                    foreach (Book book in bookViewModel.Books)
+                        if (book.InStock) books.Add(book);
 
-            bookViewModel.Books = books;
-            dataGrid.ItemsSource = bookViewModel.Books;
-            DataContext = bookViewModel.Bindings;
-            HighlightStocks();
+                    bookViewModel.Books = books;
+                    dataGrid.ItemsSource = bookViewModel.Books;
+                    DataContext = bookViewModel.Bindings;
+                    HighlightStocks();
+                }
+
+                else MessageBox.Show("Action Failed: \r\n No Data to Remove");
+            }
+
+            catch (NullReferenceException ex) 
+            {
+                MessageBox.Show("Action Failed: \r\n" + ex.Message);
+                logger.Fatal(ex.ToString());
+            }
+
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Action Failed: \r\n" + ex.Message);
+                logger.Fatal(ex.ToString());
+            }
         }
     }
 }

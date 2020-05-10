@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using NLog;
 using System;
 using System.Linq;
 using System.Windows;
