@@ -140,6 +140,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Readme.md" />
     <None Include="Resources\Books.csv" />
   </ItemGroup>
   <ItemGroup>
