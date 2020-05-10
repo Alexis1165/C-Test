@@ -1,5 +1,10 @@
 ﻿using System.ComponentModel;
 
+/// <summary>
+/// Created By: Alexis Thomas
+/// Main Books class containing all the attributes present in the .csv file to be uploaded
+/// </summary>
+
 public class Book : INotifyPropertyChanged
 {
     private int bookId;
@@ -108,12 +113,3 @@ public class Book : INotifyPropertyChanged
     #endregion
 
 }
-
-public enum BindingType
-{
-    Paperback,
-    Hardcover,
-    Unknown,
-    Coalwood
-}
-

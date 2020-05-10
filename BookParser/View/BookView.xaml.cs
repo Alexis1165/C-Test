@@ -1,7 +1,6 @@
 ﻿using BookParser.Helpers;
 using BookParser.ViewModel;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -15,7 +14,7 @@ namespace BookParser.View
     /// </summary>
     public partial class BookView : UserControl
     {
-        Dictionary<int, Style> rowStyles = new Dictionary<int, Style>();
+        private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         BookViewModel bookViewModel;
 
         public int OnSorted { get; }
@@ -23,6 +22,35 @@ namespace BookParser.View
         public BookView()
         {
             InitializeComponent();
+            InitializeBookGrid();
+        }
+        private void InitializeBookGrid() 
+        {
+            try 
+            {
+                dataGrid.AutoGenerateColumns = false;
+                dataGrid.CanUserAddRows = false;
+                dataGrid.Margin = new Thickness(5);
+                dataGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
+                dataGrid.VerticalAlignment = VerticalAlignment.Stretch;
+                dataGrid.FontWeight = FontWeights.Bold;
+                dataGrid.CanUserResizeColumns = false;
+                dataGrid.CanUserResizeRows = false;
+                dataGrid.Foreground = HexColors.GRID_BACKGROUND;
+                dataGrid.Height = 390;
+                dataGrid.MaxHeight = 390;
+                dataGrid.AlternatingRowBackground = HexColors.ALTERNATING_GRID_BACKGROUND;
+                dataGrid.BorderBrush = HexColors.GRID_BORDER_BRUSH;
+                dataGrid.BorderThickness = new Thickness(2);
+                ScrollViewer.SetHorizontalScrollBarVisibility(dataGrid, ScrollBarVisibility.Visible);
+                ScrollViewer.SetVerticalScrollBarVisibility(dataGrid, ScrollBarVisibility.Auto);
+                ScrollViewer.SetCanContentScroll(dataGrid, true);
+            }
+
+            catch (Exception ex) 
+            {
+                logger.Fatal(ex.ToString());
+            }
         }
         private void LoadBookGrid() 
         {
