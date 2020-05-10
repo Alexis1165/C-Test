@@ -1,4 +1,7 @@
-﻿namespace BookParser.Helpers
+﻿using System.Windows.Controls;
+using System.Windows.Media;
+
+namespace BookParser.Helpers
 {
     public static class Constants
     {
@@ -16,5 +19,10 @@
         public static int MINPRICE = 0;
         public static int MAXPRICE = 1;
         public static int MEDIANPRICE = 2;
+    }
+
+    public static class HexColors 
+    {
+        public static SolidColorBrush HIGHLIGHTER = (SolidColorBrush) new BrushConverter().ConvertFromString("#FFB366");
     }
 }

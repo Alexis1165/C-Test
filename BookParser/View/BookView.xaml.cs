@@ -36,7 +36,7 @@ namespace BookParser.View
                 string fileName = dlg.FileName;
                 bookViewModel = new BookViewModel(File.ReadAllLines(fileName));
                 dataGrid.ItemsSource = bookViewModel.Books;
-                DataContext = bookViewModel;
+                DataContext = bookViewModel.Bindings;
                 HighlightStocks();
             }
         }
@@ -56,7 +56,7 @@ namespace BookParser.View
                 CheckBox inStock = dataGrid.Columns[4].GetCellContent(row) as CheckBox;
                 TextBlock txtprice = dataGrid.Columns[2].GetCellContent(row) as TextBlock;
                 double price = double.Parse(txtprice.Text, System.Globalization.CultureInfo.InvariantCulture);
-                if (!inStock.IsChecked.Value) row.Background = Brushes.Red;
+                if (!inStock.IsChecked.Value) row.Background = HexColors.HIGHLIGHTER;
                 txtprice.Foreground = ColorPrice(price, priceList);
             }
         }

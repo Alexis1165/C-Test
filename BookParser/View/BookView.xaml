@@ -15,11 +15,50 @@ AlternatingRowBackground="#f2f2f2" BorderBrush="#000" BorderThickness="1"
 ScrollViewer.HorizontalScrollBarVisibility="Visible"
 ScrollViewer.VerticalScrollBarVisibility="Auto" Sorting="dataGrid_Sorting">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Title" Binding="{Binding Path='Title'}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Author" Binding="{Binding Path='Author'}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding Path='Price'}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Year" Binding="{Binding Path='Year'}" IsReadOnly="True" Width="*"/>
-                <DataGridCheckBoxColumn Header="In Stock" Binding="{Binding Path='InStock'}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Path='Title'}" IsReadOnly="True" Width="2*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Author" Binding="{Binding Path='Author'}" IsReadOnly="True" Width="2*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Price" Binding="{Binding Path='Price'}" IsReadOnly="True" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Year" Binding="{Binding Path='Year'}" IsReadOnly="True" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridCheckBoxColumn Header="In Stock" Binding="{Binding Path='InStock'}" IsReadOnly="True" Width="*">
+                    <DataGridCheckBoxColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridCheckBoxColumn.ElementStyle>
+                </DataGridCheckBoxColumn>
 
                 <DataGridComboBoxColumn 
                     Header="Binding"
@@ -30,25 +69,31 @@ ScrollViewer.VerticalScrollBarVisibility="Auto" Sorting="dataGrid_Sorting">
 
                     <DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.Bindings, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridComboBoxColumn.ElementStyle>
+                    
                     <DataGridComboBoxColumn.EditingElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.Bindings, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
 
-                <DataGridTemplateColumn Header="Description">
+                <DataGridTemplateColumn Header="Description" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="btnView" Content="Description" Click="btnView_Click" />
+                            <Button Name="btnView" Content="Description" Click="btnView_Click" Height="20" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <Button Name="btnFillGrid" Content="Upload Book" Padding="5" Margin="5" Click="btnFillGrid_Click"/>
             <TextBlock Name="btnDeleteGrid" Text="Delete Out of Stock Items" Cursor="Hand" Foreground="Blue" TextDecorations="Underline"/>
