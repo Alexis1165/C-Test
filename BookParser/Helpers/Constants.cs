@@ -46,5 +46,9 @@ namespace BookParser.Helpers
             (SolidColorBrush)new BrushConverter().ConvertFromString("#568F56");
         public static SolidColorBrush MEDIAN_PRICE =
             (SolidColorBrush)new BrushConverter().ConvertFromString("#82695E");
+        public static SolidColorBrush UPLOAD_BUTTON =
+            (SolidColorBrush)new BrushConverter().ConvertFromString("#7DA7D1");
+        public static SolidColorBrush DELETE_BUTTON =
+            (SolidColorBrush)new BrushConverter().ConvertFromString("#4D85BF");
     }
 }

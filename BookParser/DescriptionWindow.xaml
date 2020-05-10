@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="DescriptionWindow" Height="450" Width="800">
-    <Grid>
-        <Label Name="lblDescription"/>
-    </Grid>
+        Title="DescriptionWindow" Height="200" Width="400" ResizeMode="NoResize" 
+        Background="#D8DBDE" WindowStyle="None">
+
+    <StackPanel Orientation="Vertical">
+        <TextBlock Name="txtDescription" TextWrapping="Wrap" FontWeight="Bold" Padding="10" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+        <Button x:Name="btnClose" Content="Close" FontWeight="Bold" Foreground="White" 
+                Background="#FF9999" HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Hand" Width="100" 
+                Padding="5" BorderBrush="Transparent" Click="btnClose_Click"/>
+    </StackPanel>
 </Window>

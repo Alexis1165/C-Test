@@ -2,6 +2,7 @@
 using BookParser.ViewModel;
 using Microsoft.Win32;
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -24,6 +25,20 @@ namespace BookParser.View
         {
             InitializeComponent();
             InitializeBookGrid();
+            InitializeButtons();
+        }
+        private void InitializeButtons() 
+        {
+            try 
+            {
+                CustomElements.LoadButtonProperties(btnUploadBook);
+                CustomElements.LoadLinkProperties(btnDeleteGrid);
+            }
+            
+            catch(Exception ex) 
+            {
+                logger.Fatal(ex.ToString());
+            }
         }
         private void InitializeBookGrid() 
         {
@@ -138,6 +153,19 @@ namespace BookParser.View
             {
                 logger.Fatal(ex.ToString());
             }
+        }
+
+        private void btnDeleteGrid_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ObservableCollection<Book> books = new ObservableCollection<Book>();
+
+            foreach(Book book in bookViewModel.Books) 
+                if (book.InStock) books.Add(book);
+
+            bookViewModel.Books = books;
+            dataGrid.ItemsSource = bookViewModel.Books;
+            DataContext = bookViewModel.Bindings;
+            HighlightStocks();
         }
     }
 }

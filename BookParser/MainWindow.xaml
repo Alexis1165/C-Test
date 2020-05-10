@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"        
         xmlns:v="clr-namespace:BookParser.View"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="430" Width="900" ResizeMode="NoResize">
     
     <Window.DataContext>
         <v:BookView/>

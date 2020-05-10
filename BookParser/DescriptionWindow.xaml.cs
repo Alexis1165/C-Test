@@ -11,8 +11,14 @@ namespace BookParser
     {
         public DescriptionWindow(string description)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            lblDescription.Content = description;
+            txtDescription.Text = "Description: \r\n" + description;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();            
         }
     }
 }

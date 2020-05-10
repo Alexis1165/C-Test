@@ -1,8 +1,10 @@
 ﻿using Microsoft.Win32;
+using NLog;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace BookParser.Helpers
@@ -24,14 +26,54 @@ namespace BookParser.Helpers
                 bookGrid.CanUserResizeColumns = false;
                 bookGrid.CanUserResizeRows = false;
                 bookGrid.Foreground = HexColors.GRID_BACKGROUND;
-                bookGrid.Height = 390;
-                bookGrid.MaxHeight = 390;
+                bookGrid.Height = 300;
+                bookGrid.MaxHeight = 300;
                 bookGrid.AlternatingRowBackground = HexColors.ALTERNATING_GRID_BACKGROUND;
                 bookGrid.BorderBrush = HexColors.GRID_BORDER_BRUSH;
                 bookGrid.BorderThickness = new Thickness(2);
                 ScrollViewer.SetHorizontalScrollBarVisibility(bookGrid, ScrollBarVisibility.Visible);
                 ScrollViewer.SetVerticalScrollBarVisibility(bookGrid, ScrollBarVisibility.Auto);
                 ScrollViewer.SetCanContentScroll(bookGrid, true);
+            }
+
+            catch (Exception ex)
+            {
+                logger.Fatal(ex.ToString());
+            }
+        }
+        public static void LoadButtonProperties(Button btnUploadBook) 
+        {
+            NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+            try 
+            {
+                btnUploadBook.Content = "Upload Book";
+                btnUploadBook.Padding = new Thickness(5);
+                btnUploadBook.Width = 150;
+                btnUploadBook.Cursor = Cursors.Hand;
+                btnUploadBook.BorderBrush = Brushes.Transparent;
+                btnUploadBook.Background = HexColors.UPLOAD_BUTTON;
+                btnUploadBook.FontWeight = FontWeights.Bold;
+                btnUploadBook.Foreground = Brushes.White;
+            }
+
+            catch(Exception ex) 
+            {
+                logger.Fatal(ex.ToString());
+            }
+        }
+        public static void LoadLinkProperties(TextBlock btnDeleteGrid)
+        {
+            NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+            try
+            {
+                btnDeleteGrid.Text = "Delete Out of Stock Items";
+                btnDeleteGrid.Cursor = Cursors.Hand;
+                btnDeleteGrid.FontWeight = FontWeights.Bold;
+                btnDeleteGrid.Foreground = HexColors.DELETE_BUTTON;
+                btnDeleteGrid.TextDecorations = TextDecorations.Underline;
+                btnDeleteGrid.HorizontalAlignment = HorizontalAlignment.Center;
             }
 
             catch (Exception ex)
