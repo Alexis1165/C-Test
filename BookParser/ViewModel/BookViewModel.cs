@@ -1,37 +1,37 @@
 ﻿using BookParser.Helpers;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using System.Windows.Documents;
 
-class BookViewModel
+namespace BookParser.ViewModel
 {
-    public ObservableCollection<Book> Books { get; set; }
-    public BookViewModel(string[] lines)
+    class BookViewModel
     {
-        Books = new ObservableCollection<Book>();
-        for (int i = 1; i < lines.Length; ++i)
+        public ObservableCollection<Book> Books { get; set; }
+        public BookViewModel(string[] lines)
         {
-            string[] words = lines[i].Split(';');
-
-            Books.Add(new Book
+            Books = new ObservableCollection<Book>();
+            for (int i = 1; i < lines.Length; ++i)
             {
-                Title = words[0],
-                Author = words[1],
-                Year = words[2],
-                Price = words[3],
-                InStock = words[4] == Constants.YES ? true : false,
-                Binding = setBinding(words[5]),
-                Description = new Button()
-            });
-        }
-    }
+                string[] words = lines[i].Split(';');
 
-    public BindingType setBinding(string word) 
-    {
-        if (word == Constants.PAPERBACK) return BindingType.Paperback;
-        else if (word == Constants.HARDCOVER) return BindingType.Hardcover;
-        else if (word == Constants.COALWOOD) return BindingType.Coalwood;
-        
-        return BindingType.Unknown;        
+                Books.Add(new Book
+                {
+                    Title = words[0],
+                    Author = words[1],
+                    Year = words[2],
+                    Price = words[3],
+                    InStock = words[4] == Constants.YES ? true : false,
+                    Binding = setBinding(words[5])
+                });
+            }
+        }
+
+        public BindingType setBinding(string word)
+        {
+            if (word == Constants.PAPERBACK) return BindingType.Paperback;
+            else if (word == Constants.HARDCOVER) return BindingType.Hardcover;
+            else if (word == Constants.COALWOOD) return BindingType.Coalwood;
+
+            return BindingType.Unknown;
+        }
     }
 }

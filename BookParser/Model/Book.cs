@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Documents;
 
 public class Book : INotifyPropertyChanged
 {
@@ -10,7 +8,6 @@ public class Book : INotifyPropertyChanged
     private string year;
     private bool inStock;
     private BindingType binding; 
-    private Button description;
     public string Title
     {
         get
@@ -84,19 +81,6 @@ public class Book : INotifyPropertyChanged
         {
             binding = value;
             OnPropertyChanged("Binding");
-        }
-    }
-
-    public Button Description
-    {
-        get
-        {
-            return description;
-        }
-        set
-        {
-            description = value;
-            OnPropertyChanged("Description");
         }
     }
 
