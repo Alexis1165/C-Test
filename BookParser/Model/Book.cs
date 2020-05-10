@@ -2,12 +2,13 @@
 
 public class Book : INotifyPropertyChanged
 {
+    private int bookId;
     private string title;
     private string author;
-    private string price;
     private string year;
+    private string description;
+    private double price;
     private bool inStock;
-    private BindingType binding; 
     public string Title
     {
         get
@@ -33,7 +34,7 @@ public class Book : INotifyPropertyChanged
         }
     }
 
-    public string Price
+    public double Price
     {
         get
         {
@@ -71,16 +72,29 @@ public class Book : INotifyPropertyChanged
             OnPropertyChanged("InStock");
         }
     }
-    public BindingType Binding
+    public int BookId
     {
         get
         {
-            return binding;
+            return bookId;
         }
         set
         {
-            binding = value;
+            bookId = value;
             OnPropertyChanged("Binding");
+        }
+    }
+
+    public string Description
+    {
+        get
+        {
+            return description;
+        }
+        set
+        {
+            description = value;
+            OnPropertyChanged("Description");
         }
     }
 

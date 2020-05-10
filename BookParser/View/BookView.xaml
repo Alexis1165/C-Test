@@ -4,24 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
 
     <StackPanel Orientation="Vertical" >
-        <Button Name="btnFillGrid" Content="FILL GRID" Margin="5" MaxWidth="100" Click="btnFillGrid_Click"/>
         <DataGrid Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
 Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 RowBackground="#fff" FontWeight="Bold" Foreground="#525252"
 ScrollViewer.CanContentScroll="True" Height="390" MaxHeight="390"
 AlternatingRowBackground="#f2f2f2" BorderBrush="#000" BorderThickness="1"
 ScrollViewer.HorizontalScrollBarVisibility="Visible"
-ScrollViewer.VerticalScrollBarVisibility="Auto">
+ScrollViewer.VerticalScrollBarVisibility="Auto" Sorting="dataGrid_Sorting">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Title" Binding="{Binding Path='Title'}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Author" Binding="{Binding Path='Author'}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Price" Binding="{Binding Path='Price'}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Year" Binding="{Binding Path='Year'}" IsReadOnly="True" />
-                <DataGridTextColumn Header="In Stock" Binding="{Binding Path='InStock'}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Binding" Binding="{Binding Path='Binding'}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Title" Binding="{Binding Path='Title'}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Path='Author'}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Path='Price'}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Year" Binding="{Binding Path='Year'}" IsReadOnly="True" Width="*"/>
+                <DataGridCheckBoxColumn Header="In Stock" Binding="{Binding Path='InStock'}" IsReadOnly="True" Width="*"/>
+
+                <DataGridComboBoxColumn 
+                    Header="Binding"
+                    Width="*"
+                    SelectedValueBinding="{Binding BookId}" 
+                    DisplayMemberPath="bindingType" 
+                    SelectedValuePath="bindingId">
+
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.Bindings, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.Bindings, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+
                 <DataGridTemplateColumn Header="Description">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -31,5 +49,11 @@ ScrollViewer.VerticalScrollBarVisibility="Auto">
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <Button Name="btnFillGrid" Content="Upload Book" Padding="5" Margin="5" Click="btnFillGrid_Click"/>
+            <TextBlock Name="btnDeleteGrid" Text="Delete Out of Stock Items" Cursor="Hand" Foreground="Blue" TextDecorations="Underline"/>
+        </StackPanel>
+
     </StackPanel>
+
 </UserControl>

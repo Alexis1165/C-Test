@@ -10,4 +10,11 @@
         public static string UNKNOWN = "Unknown";
         public static string COALWOOD = "Coalwood";
     }
+
+    public static class PriceDistribution 
+    {
+        public static int MINPRICE = 0;
+        public static int MAXPRICE = 1;
+        public static int MEDIANPRICE = 2;
+    }
 }
